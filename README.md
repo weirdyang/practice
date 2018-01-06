@@ -13,8 +13,12 @@ Image processing is done with Pillow. Examples:
 ![Appreciate this doggo http://bit.ly/2gSzA5G  #aww](https://pbs.twimg.com/media/DNSD1AIUMAAVAG0.jpg)
 
 #### Colourized Dither
-![https://pbs.twimg.com/media/DNRio_ZVQAEUp0o.jpg](https://pbs.twimg.com/media/DNRio_ZVQAEUp0o.jpg)
+![Kurt Cobain with his baby daughter. 1992 http://bit.ly/2gSFKCR  #imagesofthe1990s](https://pbs.twimg.com/media/DNRio_ZVQAEUp0o.jpg)
 
+#### Pixelation  
+![Capt. Riley and lifeguards, Coney Island, N.Y, ca. 1900. http://bit.ly/2gRcV9T  #ColorizedHistory](https://pbs.twimg.com/media/DNO1xt0V4AAO6aP.jpg)
+
+Complete set can be found [here](https://twitter.com/guavarilla/media)
 
 ### news articles
 Followed the tutorial [here](https://www.quantinsti.com/blog/sentiment-analysis-news-python/) on scraping newspaper articles and performing sentiment analysis. Updated the code to work with python 3.6. Changed the webscraping code to match the changes in the website's layout. Used nltk instead of pattern to do sentiment analysis and text parsing. Used VADER and a different corpus to perform the sentiment analysis.
