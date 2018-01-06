@@ -10,5 +10,8 @@ Corpus from: http://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html
 
 [Results](https://github.com/captmomo/practice/blob/master/news_articles/results.txt)
 
+# speech play
+Sample script using [gTTs](https://github.com/pndurette/gTTS) to convert text to sound and using [pygame](https://www.pygame.org/wiki/GettingStarted) to play the sound file.
+
 
 
