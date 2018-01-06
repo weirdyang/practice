@@ -1,6 +1,21 @@
 # practice
 Repo of scripts 
 
+### tweepbot
+A bot built using praw and python. It picks a random post from the multi-reddit "food+shittyfoodporn+wewantplates", processes it then submits it twitter.  
+
+Image processing is done with Pillow. Examples:  
+
+Atkinson Dither
+![Does this count? Appeared on a old school friends Instagram... Looks like steak and chips.... http://bit.ly/2lTtCju  #WeWantPlates](https://pbs.twimg.com/media/DSspbTwU8AABHMr.jpg)
+
+Colour shifting
+![Appreciate this doggo http://bit.ly/2gSzA5G  #aww](https://pbs.twimg.com/media/DNSD1AIUMAAVAG0.jpg)
+
+Colourized Dither
+![https://pbs.twimg.com/media/DNRio_ZVQAEUp0o.jpg](https://pbs.twimg.com/media/DNRio_ZVQAEUp0o.jpg)
+
+
 ### news articles
 Followed the tutorial [here](https://www.quantinsti.com/blog/sentiment-analysis-news-python/) on scraping newspaper articles and performing sentiment analysis. Updated the code to work with python 3.6. Changed the webscraping code to match the changes in the website's layout. Used nltk instead of pattern to do sentiment analysis and text parsing. Used VADER and a different corpus to perform the sentiment analysis.
 
