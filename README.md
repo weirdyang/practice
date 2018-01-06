@@ -3,8 +3,11 @@ Repo of scripts
 
 # news articles
 Followed the tutorial [here](https://www.quantinsti.com/blog/sentiment-analysis-news-python/) on scraping newspaper articles and performing sentiment analysis.
+
 Sentiment analysis using [VADER](http://www.nltk.org/_modules/nltk/sentiment/vader.html) and a simple dictionary using a corpus of postive and negative words.
+
 Corpus from: http://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html
+
 ### Results:  
 {'coy': 'cadilahealthcare', 'neg': 0.049, 'neu': 0.838, 'pos': 0.113, 'compound': 0.8519, 'corpus': -1}
 {'coy': 'cadilahealthcare', 'neg': 0.0, 'neu': 0.886, 'pos': 0.114, 'compound': 0.9136, 'corpus': 3}
