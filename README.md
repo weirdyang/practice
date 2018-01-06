@@ -9,7 +9,8 @@ Sentiment analysis using [VADER](http://www.nltk.org/_modules/nltk/sentiment/vad
 Corpus from: http://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html
 
 [Results](https://github.com/captmomo/practice/blob/master/news_articles/results.txt)
-![Results](https://github.com/captmomo/practice/blob/master/news_articles/sample_results.png)
+
+![Results](https://raw.githubusercontent.com/captmomo/practice/master/news_articles/sample_results.PNG)
 
 ### speech play
 Sample script using [gTTs](https://github.com/pndurette/gTTS) to convert text to sound and using [pygame](https://www.pygame.org/wiki/GettingStarted) to play the sound file.
