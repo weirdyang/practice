@@ -6,13 +6,13 @@ A bot built using praw and python. It picks a random post from the multi-reddit 
 
 Image processing is done with Pillow. Examples:  
 
-Atkinson Dither
+#### Colour shifting
 ![Does this count? Appeared on a old school friends Instagram... Looks like steak and chips.... http://bit.ly/2lTtCju  #WeWantPlates](https://pbs.twimg.com/media/DSspbTwU8AABHMr.jpg)
 
-Colour shifting
+#### Atkinson Dither
 ![Appreciate this doggo http://bit.ly/2gSzA5G  #aww](https://pbs.twimg.com/media/DNSD1AIUMAAVAG0.jpg)
 
-Colourized Dither
+#### Colourized Dither
 ![https://pbs.twimg.com/media/DNRio_ZVQAEUp0o.jpg](https://pbs.twimg.com/media/DNRio_ZVQAEUp0o.jpg)
 
 
