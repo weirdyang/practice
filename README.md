@@ -2,7 +2,7 @@
 Repo of scripts 
 
 ### news articles
-Followed the tutorial [here](https://www.quantinsti.com/blog/sentiment-analysis-news-python/) on scraping newspaper articles and performing sentiment analysis. Made changes to use different set of dictionary and analysis tools.
+Followed the tutorial [here](https://www.quantinsti.com/blog/sentiment-analysis-news-python/) on scraping newspaper articles and performing sentiment analysis. Updated the code to work with python 3.6. Changed the webscraping code to match the changes in the website's layout. Used nltk instead of pattern to do sentiment analysis and text parsing. Used VADER and a different corpus to perform the sentiment analysis.
 
 Sentiment analysis using [VADER](http://www.nltk.org/_modules/nltk/sentiment/vader.html) and a simple dictionary using a corpus of postive and negative words.
 
