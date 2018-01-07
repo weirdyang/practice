@@ -2,6 +2,6 @@ Created a text generator following the steps in this [guide](http://www.gilestho
   
 Corpus are posts scrapped from a couple of letsrun forum thread.  
   
-Example with seed word "run":
+##### Example with seed word "run":
 
 Run a 2:10 in boxer , and think i pretty much be a pack to uk , re-read it either you also waiting the pack witless dross easy to funniest thread stick one women.my mother to weat 5k . kept thinking fishing . think what are an , cell , i absolutely amazed distance runners running down completing the packs . developed a packs can . leave your hair on your trainers up own arses peggy lee breathe a pack to yacht club stay away - exactly.best i 've , bring at an , cell , a pack , finishing it one of greatest ! personally am about doin mile race i think will be nice read are those make bicyclists super duper packs in uk . see you there rules packin heat but does did you from a pack to side charactor story was song entitled the interval
