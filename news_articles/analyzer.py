@@ -57,4 +57,4 @@ class Analyzer():
     def vader_analyze(self, text):
         vader = SentimentIntensityAnalyzer()
         score = vader.polarity_scores(text)
-return score
+        return score
