@@ -1,4 +1,4 @@
-Created a text generator following the steps in this [guide](http://www.gilesthomas.com/2010/05/generating-political-news-using-nltk/) and this [gudie from cyber omelette](http://www.cyber-omelette.com/2017/01/markov.html).  
+Created a text generator following the steps in this [guide](http://www.gilesthomas.com/2010/05/generating-political-news-using-nltk/) and this [guide from cyber omelette](http://www.cyber-omelette.com/2017/01/markov.html).  
   
 Corpus are posts scrapped from a couple of letsrun forum thread.  
   
