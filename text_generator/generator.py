@@ -83,8 +83,3 @@ def generate_message(chain, count=100):
 
 
 generate_using_markov('letsrun_1.txt')
-bigrams = nltk.bigrams(words)
-CFD = nltk.ConditionalFreqDist(bigrams)
-FD = nltk.FreqDist(generated_ngrams)
-print(FD)
-print(generate_model(generated_ngrams, 'run'))
