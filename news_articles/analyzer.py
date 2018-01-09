@@ -30,16 +30,8 @@ class Analyzer():
 
     def analyze(self, text):
         """Analyze text for sentiment, returning its score."""
-        #tokenizer = nltk.tokenize.TweetTokenizer()
-        stop_words = stopwords.words('english')
-        tokens = word_tokenize(text)
-        # normalize to lower case
-        tokens = [word.lower() for word in tokens]
-        # remove all tokens that are not alphabetic
-        tokens = [word for word in tokens if word.isalpha()]
-        # remove stopwords
-        tokens = [word for word in tokens if not word in stop_words]
-        #tokens = tokenizer.tokenize(text.lower())
+        tokenizer = nltk.tokenize.TweetTokenizer()
+        tokens = tokenizer.tokenize(text.lower())
             
         score = 0    
         #https://stackoverflow.com/questions/8275417/check-substring-match-of-a-word-in-a-list-of-words
