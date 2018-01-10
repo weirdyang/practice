@@ -54,6 +54,9 @@ def generate_using_nltk(input_text):
 
 
 def generate_using_markov(filename):
+    """
+    http://www.cyber-omelette.com/2017/01/markov.html
+    """
     raw = read_file(filename)
     raw = word_tokenize(raw.lower())
     markov = build_chain(raw)
