@@ -56,26 +56,26 @@ def image_rgb_shift(in_file):
 
 def atkinson_dither(in_file):
     img = Image.open(in_file).convert('L')
-    pix = img.load()
+    pixel = img.load()
     w, h = img.size
     for y in range(h):
         for x in range(w):
-            old = pix[x, y]
-            new = 0 if old < 127 else 255
-            pix[x, y] = new
-            quant_error = old - new
+            oldpixel = pixel[x, y]
+            newpixel = round(oldpixel/256, 0)
+            pixel[x, y] = newpixel
+            quant_error = oldpixel - newpixel
             if x < w - 1:
-                pix[x + 1, y] += quant_error * 1 // 8
+                pixel[x + 1, y] += quant_error * 1 // 8
             if x < w - 2:
-                pix[x + 2, y] += quant_error * 1 // 8
+                pixel[x + 2, y] += quant_error * 1 // 8
             if x > 0 and y < h - 1:
-                pix[x - 1, y + 1] += quant_error * 1 // 8
+                pixel[x - 1, y + 1] += quant_error * 1 // 8
             if y < h - 1:
-                pix[x, y + 1] += quant_error * 1 // 8
+                pixel[x, y + 1] += quant_error * 1 // 8
             if y < h - 2:
-                pix[x, y + 2] += quant_error * 1 // 8
+                pixel[x, y + 2] += quant_error * 1 // 8
             if x < w - 1 and y < h - 1:
-                pix[x + 1, y + 1] += quant_error * 1 // 8
+                pixel[x + 1, y + 1] += quant_error * 1 // 8
     
     if w > 1024 or h > 512:
         img = ImageOps.scale(img,0.75)
