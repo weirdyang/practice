@@ -14,8 +14,8 @@ def generate_model(list_ngrams, word, CFD, num=90):
     message = word.capitalize() + ' '
     print(message)
     while len(message.split(' ')) < num:
-        random.shuffle(list_ngrams)
-        for item in list_ngrams:
+        random.shuffle(list_random)
+        for item in list_random:
             if item[0] == word.lower():
                 message += "{0} {1} ".format(item[1], item[2])
                 word = CFD[item[2]].max().lower()
@@ -26,6 +26,7 @@ def generate_model(list_ngrams, word, CFD, num=90):
 def generate_model_2(cfdist, word, num=15):
     """
     generate model based on CFD for single words
+    http://www.nltk.org/book/ch02.html
     """
     message = word.capitalize()
     while len(message.split(' ')) < num:
@@ -45,9 +46,9 @@ def generate_using_nltk(input_text):
     words = word_tokenize(input_text.lower())
     generated_ngrams = list(ngrams(words, 3))
     bigrams = nltk.bigrams(words)
-    CFD = nltk.ConditionalFreqDist(bigrams)
+    cfd = nltk.ConditionalFreqDist(bigrams)
     #FD = nltk.FreqDist(generated_ngrams)
-    print(generate_model(generated_ngrams, 'run', CFD))
+    print(generate_model(generated_ngrams, 'run', cfd))
 
 
 def generate_using_markov(filename):
