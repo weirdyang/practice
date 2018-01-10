@@ -5,23 +5,24 @@ from nltk import word_tokenize
 #from nltk.collocations import TrigramAssocMeasures
 from nltk.util import ngrams
 
-
 def generate_model(list_ngrams, word, CFD, num=90):
     """
     generate model based on ngrams
     """
-    list_random = list_ngrams
+    list_random = list(set(list_ngrams))
     message = word.capitalize() + ' '
     print(message)
     while len(message.split(' ')) < num:
         random.shuffle(list_random)
+        word_2 = 'test'
         for item in list_random:
-            if item[0] == word.lower():
+            if item[0] == word.lower() and item[0] != word_2:
                 message += "{0} {1} ".format(item[1], item[2])
-                word = CFD[item[2]].max().lower()
+                word = CFD[item[2]].max()
+                word_2 = word
                 list_random.remove(item)
+                break
     return message
-
 
 def generate_model_2(cfdist, word, num=15):
     """
