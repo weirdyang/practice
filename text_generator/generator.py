@@ -37,10 +37,11 @@ def generate_model_2(cfdist, word, num=15):
 
 
 def read_file(filename):
-    with open(filename, "r") as file:
+    with open(filename, "r", encoding='utf-8') as file:
         contents = file.read().replace('\n\n', ' ')
         contents = contents.replace("wrote:", ' ')
         contents = contents.replace('  ', ' ')
+        contents = contents.strip("..
     return contents
 
 
