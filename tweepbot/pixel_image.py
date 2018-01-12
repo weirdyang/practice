@@ -10,17 +10,6 @@ import re
 import os
 from collections import defaultdict
 from functools import reduce
-
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
 #https://hhsprings.bitbucket.io/docs/programming/examples/python/PIL/Image__Functions.html
 def image_merge(in_file):
     img = Image.open(in_file).convert('RGB')
@@ -128,11 +117,11 @@ def generate_pixel_image(in_file):
         return(in_file)
 
 
-def pixelate_image(filename):
+def pixelate_image(in_file):
     image = Image.open(filename)
     img_data = list(image.getdata())
-    freq_dist_top_1 = FreqDist(img_data)
-    top_1_colour = freq_dist_top_1.most_common(1)[0][0]
+    freq_dist = FreqDist(img_data)
+    top_1_colour = freq_dist.most_common(1)[0][0]
     backgroundColor = top_1_colour
     pixelSize = 9
     image = image.resize((int(image.size[0]/pixelSize), int(image.size[1]/pixelSize)), Image.ANTIALIAS)
@@ -157,9 +146,9 @@ def colour_dither(in_file):
     img_data = list(img.getdata())
     length = len(list(img.getdata()))
     freq_dist = FreqDist(img_data)
-    top_ten_colours = freq_dist.most_common(256)
+    top_256_colours = freq_dist.most_common(256)
     palette = []
-    for colour in top_ten_colours:
+    for colour in top_256_colours:
         palette.append(colour[0])
     while len(palette)<256:
         palette.append((0,0,0))
