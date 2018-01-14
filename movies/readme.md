@@ -10,7 +10,7 @@
   
   ### Sample Chart
   
-  [!Sample Chart](https://raw.githubusercontent.com/captmomo/practice/master/movies/sample_chart.PNG)
+  ![Sample Chart](https://raw.githubusercontent.com/captmomo/practice/master/movies/sample_chart.PNG)
   
   # Attribution  
   
