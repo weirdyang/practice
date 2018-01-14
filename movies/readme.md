@@ -8,6 +8,9 @@
   
   d3 chart can be viewed [here](http://bl.ocks.org/captmomo/1371ebb46c5a0a0e16cd388e109cc7d5).
   
+  ### Sample Chart
+  
+  [!Sample Chart](https://raw.githubusercontent.com/captmomo/practice/master/movies/sample_chart.PNG)
   
   # Attribution  
   
