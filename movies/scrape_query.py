@@ -27,22 +27,10 @@ def scraping_the_number():
         start_page += 100
         time.sleep(3)
 
-
-def scraping_rotten_tomato():
-    base_url = "https://www.rottentomatoes.com/search/?search=avatar"
-    res = requests.get(base_url)
-    soup = BeautifulSoup(res.content, "html.parser")
-    movie_list = soup.find_all('li', {'class': 'bottom divider clearfix'})
-    for movie in movie_list:
-        print(movie)
-
-
 def load_csv_and_query(input_file):
     #load csv and iterate through df to get movie names
     master_data = pd.read_csv(input_file, sep='\t')
     #print(movies_list)
-    for index, row in master_data.iterrows():
-        print("{0} has name: {1}".format(index, row['Movie']))
     movies_list = master_data['Movie'].tolist()
     print(movies_list)
     for movie in movies_list:
