@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ chart | safe }}
+
+    <table cellspacing="5" cellpadding="2">
+        <tr>
+            <th>Word</th> 
+            <th>Occurances</th>  
+        </tr>
+    {%for word in words%}
+    <tr>
+    <td>{{word[0]}}</td>
+    <td>{{word[1]}}</td>  
+    </tr>
+    {%endfor%}
+    </table>
+
+    <table cellspacing="5" cellpadding="2">
+        <tr>
+            <th>Animal</th> 
+            <th>Occurances</th>  
+        </tr>
+    {%for animal in animals%}
+    <tr>
+    <td>{{animal[0]}}</td>
+    <td>{{animal[1]}}</td>  
+    </tr>
+    {%endfor%}
+    </table>
+{% endblock %}

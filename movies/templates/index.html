@@ -1,0 +1,188 @@
+{% extends "layout.html" %} {% block body %}
+
+<div id=selection_form>
+    <form>
+        Select genre:
+        <select id="mySelect">
+            <option value="all">All</option>
+            <option value="animation">Animation</option>
+            <option value="action">Action</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+        </select>
+    </form>
+    <button class="btn btn-default" type="submit" onclick="stream()">Generate</button>
+</div>
+<a href="/ratings">Rating comparison</a>
+<div id='chart'>
+ <script>
+ // Define overall size and margins for the chart
+ var tooltip = d3.select("#chart")
+            .append("div")
+            .style("position", "absolute")
+            .style("font-family", "sans-serif")
+            .style("font-size", "10px")
+            .style("z-index", "10")
+            .style("visibility", "hidden");
+
+var margin = {top: 20, right: 30, bottom: 20, left: 100},
+    width = 800 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+// Setup svg object
+var chart = d3.select("#chart").append("svg")
+    .attr("width", width + margin.right + margin.left)
+    .attr("height", height + margin.top + margin.bottom);
+
+// Define area where the graph will be drawn
+var main = chart.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("id", "main");
+
+// Define the x axis
+var x = d3.scaleLinear()
+    .range([0, width]);
+var xAxis = d3.axisBottom()
+    .scale(x)
+
+//Define the y axis
+var y = d3.scaleLinear()
+    .range([height, 0])
+var yAxis = d3.axisLeft()
+    .scale(y);
+
+
+
+// Set up color scale
+var color = d3.scaleOrdinal(d3.schemeCategory20)
+
+// Draw the graph object holding the data points
+var g = main.append("svg:g")
+    .attr("id","datapoints"); 
+
+//load the data
+d3.json("{{ url_for('static', filename='master.json') }}", function (error, data) {
+    if (error) throw error;
+    console.log(data)
+    // format the data
+    data.forEach(function (d) {
+        d.movie = d['Movie']
+        d.gross = +d['Worldwide Gross']
+        d.budget = +d['Production Budget'];
+    });
+
+    //set up the x domain
+    x.domain([d3.min(data, function (d) { return d.budget }), d3.max(data, function (d) { return d.budget })])
+    //set up the y domain
+    y.domain([d3.min(data, function (d) { return d.gross }), d3.max(data, function (d) { return d.gross })])
+
+    // Draw the x and y axes
+    main.append("g")
+        .attr("transform", "translate(0," + height + ")")  // Position at bottom of chart
+        .attr("class", "x axis")
+        .call(xAxis);
+
+    main.append("text")
+        .attr("class", "label")
+        .attr("x", width)
+        .attr("y", height - 6)
+        .style("text-anchor", "end")
+        .text("Production Budget");
+
+    main.append("g")
+        .attr("transform", "translate(0,0)")  // Position at left of chart
+        .attr("class", "y axis")
+        .call(yAxis);
+    
+    main.append("text")
+        .attr("class", "label")
+        .attr("y", 6)
+        .attr("transform", "rotate(-90)")
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Worldwide Gross");
+    
+    var points = main.selectAll("circle")
+                  .data(data)
+    points.enter().append("circle")
+        .attr("r", 5)
+        .attr("cx", function (d) { return x(d.budget); })
+        .attr("cy", function (d) { return y(d.gross); })
+        .style("fill", function (d, i) { return color(i); })
+        .on("mouseover", function (d) {
+            return tooltip
+                .style("visibility", "visible").html(d.movie);
+        })
+        .on("mousemove", function (d) {
+            return tooltip
+                .style("top", (d3.event.pageY - 10) + "px")
+                .style("left", (d3.event.pageX + 10) + "px")
+                .html(d.movie);
+        })
+        .on("mouseout", function (d) {
+            return tooltip
+                .style("visibility", "hidden");
+        });
+});
+
+    function stream() {
+        console.log($("#mySelect").val());
+        $.ajax({
+            type: 'GET',
+            url: encodeURI('/generate/' + $('#mySelect').val()),
+            dataType: 'json',
+            success: function (results) {
+                /////console.log(results);
+                var data = JSON.parse(results);
+                console.log(data);
+                data.forEach(function (d) {
+                    d.movie = d['Movie']
+                    d.budget = +d['Production Budget']
+                    d.gross = +d['Worldwide Gross'];
+                });
+                var xValue = function (d) { return d.budget }; // data -> value
+                var yValue = function (d) { return d.gross; };
+
+                //rescale x and y
+                //set up the x domain
+                x.domain([d3.min(data, xValue)-1, d3.max(data, xValue)+1])
+                //set up the y domain
+                y.domain([0, d3.max(data, yValue)+1])
+                main.select(".x.axis") // change the x axis
+                        .call(xAxis);
+                main.select(".y.axis") // change the y axis
+                        .call(yAxis);
+                //adding points
+                var points = main.selectAll("circle")
+                points.remove();
+                
+                var dots = main.selectAll("circle")
+                            .data(data)
+                dots.enter().append("circle")
+                    .attr("r", 5)
+                    .attr("cx", function (d) { return x(d.budget); })
+                    .attr("cy", function (d) { return y(d.gross); })
+                    .style("fill", function (d, i) { return color(i); })
+                    .on("mouseover", function (d) {
+                        return tooltip
+                            .style("visibility", "visible").html(d.movie);
+                    })
+                    .on("mousemove", function (d) {
+                        return tooltip
+                            .style("top", (d3.event.pageY - 10) + "px")
+                            .style("left", (d3.event.pageX + 10) + "px")
+                            .html(d.movie);
+                    })
+                    .on("mouseout", function (d) {
+                        return tooltip
+                            .style("visibility", "hidden");
+                    });
+                
+            }
+        });
+    }
+ </script>
+</div>
+{% endblock %}
