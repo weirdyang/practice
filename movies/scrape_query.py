@@ -14,9 +14,7 @@ omdb.set_default('apikey', API_KEY)
 
 
 def scraping_the_number():
-    start_page = 1
-
-    while start_page < 1000:
+    for start_page in range(1, 1000, 100):
         scrape_url = "https://www.the-numbers.com/movie/budgets/all/{}".format(
             start_page)
         raw_df = pd.read_html(scrape_url, header=0)[0]
@@ -24,7 +22,6 @@ def scraping_the_number():
         filtered_df.to_csv("page{}.csv".format(
             start_page), sep='\t', header=True)
         print(filtered_df)
-        start_page += 100
         time.sleep(3)
 
 def load_csv_and_query(input_file):
@@ -76,24 +73,16 @@ def omdb_request_api(movie_name):
         ratings = {'IMDB': 0, 'RT': 0, 'METACRITIC': 0}
         time.sleep(3)
         return ratings
-    if movie_deets['Response'] == 'True':
+    if movie_deets['Response'] != 'False':
         #print(movie_deets['Title'])
-        if len(movie_deets['Ratings']) == 1:
-            imdb_rating = movie_deets['Ratings'][0]['Value']
-            rt_rating = 0
-            metacritic = 0
-        elif len(movie_deets['Ratings']) == 2:
-            rt_rating = movie_deets['Ratings'][1]['Value']
-            imdb_rating = movie_deets['Ratings'][0]['Value']
-            metacritic = 0
-        elif len(movie_deets['Ratings']) == 3:
-            rt_rating = movie_deets['Ratings'][1]['Value']
-            imdb_rating = movie_deets['Ratings'][0]['Value']
-            metacritic = movie_deets['Ratings'][2]['Value']
-        else:
-            imdb_rating = 0
-            rt_rating = 0
-            metacritic = 0
+        length = len(movie_deets['Ratings'])
+        ratings = {'IMDB': 0, 'RT': 0, 'METACRITIC': 0}
+        if length >= 1:
+        ratings['IMDB'] = movie_deets['Ratings'][0]['Value']
+        if length >= 2:
+        ratings['RT'] = movie_deets['Ratings'][1]['Value']
+        if length >= 3:
+        ratings['METACRITIC'] = movie_deets['Ratings'][2]['Value']
         ratings = {'IMDB': imdb_rating,
                    'RT': rt_rating, 'METACRITIC': metacritic}
         time.sleep(3)
