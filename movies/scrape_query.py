@@ -94,17 +94,11 @@ def omdb_request_api(movie_name):
 
 def load_csv_and_plot(input_file):
     master_data = pd.read_csv(input_file, sep='\t')
-    master_data['Production Budget'] = master_data['Production Budget'].replace(
+    master_data[['Production Budget', 'Worldwide Gross', 'Domestic Gross']] = \
+    master_data[['Production Budget', 'Worldwide Gross', 'Domestic Gross'].replace(
         '[\$,]', '', regex=True).astype(float)
-    master_data['Production Budget'] = master_data['Production Budget'].divide(
-        1000000)
-    master_data['Worldwide Gross'] = master_data['Worldwide Gross'].replace(
-        '[\$,]', '', regex=True).astype(float)
-    master_data['Worldwide Gross'] = master_data['Worldwide Gross'].divide(
-        1000000)
-    master_data['Domestic Gross'] = master_data['Domestic Gross'].replace(
-        '[\$,]', '', regex=True).astype(float)
-    master_data['Domestic Gross'] = master_data['Domestic Gross'].divide(
+    master_data[['Production Budget', 'Worldwide Gross', 'Domestic Gross']] = \
+    master_data[['Production Budget', 'Worldwide Gross', 'Domestic Gross'].divide(
         1000000)
     master_data['IMDB'] = master_data['IMDB'].replace(
         '[\/10,]', '', regex=True)
