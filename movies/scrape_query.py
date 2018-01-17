@@ -38,7 +38,7 @@ def load_csv_and_query(input_file):
                 continue
             else:
                 print("Error - {}\n".format(movie))
-        except Exception as inst:
+        except requests.exceptions.RequestException as inst:
             print('Error - {} Movie - {}\n'.format(inst, movie))
     time.sleep(2)
 
@@ -51,6 +51,7 @@ def load_csv_and_query_api(input_file):
     for row in master_data['Movie']:
         results = omdb_request_api(row)
         ratings.append(results)
+        time.sleep(3)
     ratings_df = pd.DataFrame(ratings)
     ratings_df.to_csv("ratings{}.csv".format(
         input_file[:-4]), sep='\t', header=True)
@@ -68,29 +69,26 @@ def omdb_request_api(movie_name):
         payload = {'apikey': API_KEY, 't': movie_name}
         res = requests.get(scrape_url, params=payload, timeout=10)
         movie_deets = json.loads(res.text)
-    except Exception as inst:
+    except requests.exceptions.RequestException as inst:
         print("Error - {0} - {1}".format(inst, movie_name))
         ratings = {'IMDB': 0, 'RT': 0, 'METACRITIC': 0}
-        time.sleep(3)
         return ratings
     if movie_deets['Response'] != 'False':
         #print(movie_deets['Title'])
         length = len(movie_deets['Ratings'])
         ratings = {'IMDB': 0, 'RT': 0, 'METACRITIC': 0}
         if length >= 1:
-        ratings['IMDB'] = movie_deets['Ratings'][0]['Value']
+            ratings['IMDB'] = movie_deets['Ratings'][0]['Value']
         if length >= 2:
-        ratings['RT'] = movie_deets['Ratings'][1]['Value']
+            ratings['RT'] = movie_deets['Ratings'][1]['Value']
         if length >= 3:
-        ratings['METACRITIC'] = movie_deets['Ratings'][2]['Value']
-        ratings = {'IMDB': imdb_rating,
+            ratings['METACRITIC'] = movie_deets['Ratings'][2]['Value']
+            ratings = {'IMDB': imdb_rating,
                    'RT': rt_rating, 'METACRITIC': metacritic}
-        time.sleep(3)
         return ratings
     else:
         print("Error: {0} - {1}".format(movie_name, movie_deets['Error']))
         ratings = {'IMDB': 0, 'RT': 0, 'METACRITIC': 0}
-        time.sleep(3)
         return ratings
 
 
