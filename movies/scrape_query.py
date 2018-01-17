@@ -97,13 +97,16 @@ def load_csv_and_plot(input_file):
     master_data[['Production Budget', 'Worldwide Gross', 'Domestic Gross']] = \
     master_data[['Production Budget', 'Worldwide Gross', 'Domestic Gross'].replace(
         '[\$,]', '', regex=True).astype(float)
+                
     master_data[['Production Budget', 'Worldwide Gross', 'Domestic Gross']] = \
     master_data[['Production Budget', 'Worldwide Gross', 'Domestic Gross'].divide(
         1000000)
+                
     master_data['IMDB'] = master_data['IMDB'].replace(
         '[\/10,]', '', regex=True)
     master_data['IMDB'] = pd.to_numeric(
         master_data['IMDB'], downcast='float', errors='coerce')
+                
     master_data['Production to Worldwide Ratio'] = master_data['Worldwide Gross'].divide(
         master_data['Production Budget'])
     print(master_data)
@@ -114,8 +117,6 @@ def load_csv_and_plot(input_file):
     ax1.set_xlabel('IMDB Rating')
     ax1.scatter(y=master_data['Production to Worldwide Ratio'],
                 x=master_data['IMDB'], marker='o', c='r')
-    #ax1.scatter(y=master_data['Worldwide Gross'], x=master_data['IMDB'], marker='s', c='b', label='Worldwide Gross')
-    #plt.legend(loc='upper right')
     plt.show()
     chart_df = pd.concat([master_data['Production to Worldwide Ratio'],
                         master_data['Movie'], master_data['IMDB']], axis=1)
