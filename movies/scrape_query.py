@@ -73,24 +73,22 @@ def omdb_request_api(movie_name):
         print("Error - {0} - {1}".format(inst, movie_name))
         ratings = {'IMDB': 0, 'RT': 0, 'METACRITIC': 0}
         return ratings
-    if movie_deets['Response'] != 'False':
-        #print(movie_deets['Title'])
-        length = len(movie_deets['Ratings'])
-        ratings = {'IMDB': 0, 'RT': 0, 'METACRITIC': 0}
-        if length >= 1:
-            ratings['IMDB'] = movie_deets['Ratings'][0]['Value']
-        if length >= 2:
-            ratings['RT'] = movie_deets['Ratings'][1]['Value']
-        if length >= 3:
-            ratings['METACRITIC'] = movie_deets['Ratings'][2]['Value']
-            ratings = {'IMDB': imdb_rating,
-                   'RT': rt_rating, 'METACRITIC': metacritic}
-        return ratings
-    else:
+    if movie_deets['Response'] != 'True':
         print("Error: {0} - {1}".format(movie_name, movie_deets['Error']))
         ratings = {'IMDB': 0, 'RT': 0, 'METACRITIC': 0}
-        return ratings
-
+         #print(movie_deets['Title'])
+    length = len(movie_deets['Ratings'])
+    ratings = {'IMDB': 0, 'RT': 0, 'METACRITIC': 0}
+    if length >= 1:
+        ratings['IMDB'] = movie_deets['Ratings'][0]['Value']
+    if length >= 2:
+        ratings['RT'] = movie_deets['Ratings'][1]['Value']
+    if length >= 3:
+        ratings['METACRITIC'] = movie_deets['Ratings'][2]['Value']
+        ratings = {'IMDB': imdb_rating,
+               'RT': rt_rating, 'METACRITIC': metacritic}
+    return ratings
+    
 
 def load_csv_and_plot(input_file):
     master_data = pd.read_csv(input_file, sep='\t')
