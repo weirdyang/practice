@@ -2,7 +2,7 @@ import pygal
 import pandas as pd
 import json
 
-input_df = pd.read_csv('racebirthrate.txt', sep='\t', encoding='utf-8')
+input_df = pd.read_csv('race_birth_rate.tsv', sep='\t', encoding='utf-8')
 headers = list(input_df.columns.values)
 xy_chart = pygal.XY(legend_at_bottom=True, tooltip_border_radius=10)
 xy_chart.x_labels = (1972, 1975, 1985, 2001, 2016)
