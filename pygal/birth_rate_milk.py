@@ -11,7 +11,7 @@ xy_chart.y_title = "% Change. Index: 2004 = 100"
 for item in headers:
     if item == 'Year':
         continue
-    values = list(zip(input_df['Year'], input_df[item]))
+    values = list(zip(input_df['Year'], input_df[item]*100))
     xy_chart.add(item, values)
 
 xy_chart.render_in_browser()
