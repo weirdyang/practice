@@ -13,6 +13,10 @@
   
   ![Sample Chart](https://raw.githubusercontent.com/captmomo/practice/master/movies/sample_chart.PNG)
   
+  ### Summary Statistics
+  
+  ![Summary](https://raw.githubusercontent.com/captmomo/practice/master/movies/movies.PNG)
+  
   # Attribution  
   
   Made with help and code from:
