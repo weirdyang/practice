@@ -15,7 +15,7 @@
   
   ### Summary Statistics
   
-  ![Summary](https://raw.githubusercontent.com/captmomo/practice/master/movies/movies.PNG)
+  ![Summary](https://raw.githubusercontent.com/captmomo/practice/master/movies/movie.PNG)
   
   # Attribution  
   
