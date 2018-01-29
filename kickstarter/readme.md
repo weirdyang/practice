@@ -2,7 +2,7 @@ Project to scrape kickstarter for a sample of >100% funded successful projects.
 
 Total count 2387.
   
-Objective is to determine which categories has the most sucessful projects and determine what is the range in which they fall in terms of USD.  
+Objective is to determine which category has the most number of sucessful projects and determine what is the range in which they fall in terms of USD.  
   
 Graphs can be viewed here:  
 https://immense-headland-56609.herokuapp.com/kickstarter  
