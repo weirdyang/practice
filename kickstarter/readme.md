@@ -1,4 +1,6 @@
-Project to scrape kickstarter for >100% funded successful projects.  
+Project to scrape kickstarter for a sample of >100% funded successful projects. 
+
+Total count 2387.
   
 Objective is to determine which categories has the most sucessful projects and determine what is the range in which they fall in terms of USD.  
   
@@ -9,7 +11,6 @@ Summary results:
   
 |goal (usd)| 	pledged (usd)| 	percentage| 	backers|
 |--|--|--|--|
-|count| 	2387| 	2387| 	2387| 	2387|
 |mean| 	97299.33005| 	584570.3457| 	25.80101796| 	5237.093004|
 |std| 	164080.1076| 	966204.2389| 	472.4572279| 	9735.562094|
 |min| 	10| 	173586.3556| 	0.070502976| 	36|
