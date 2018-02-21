@@ -6,7 +6,7 @@ Unable to detect faces if both eyes closed
 
 ## Current results:
 
-<img src="https://raw.githubusercontent.com/captmomo/practice/master/face/ministers_rated.JPG" width="100" height="100">
+<img src="https://raw.githubusercontent.com/captmomo/practice/master/face/ministers_rated.JPG" width=50%>
 
 
 ![wink_1](https://raw.githubusercontent.com/captmomo/practice/master/face/wink_1_rated.JPG | width=200)
