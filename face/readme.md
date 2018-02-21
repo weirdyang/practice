@@ -8,8 +8,7 @@ Unable to detect faces if both eyes closed
 
 <img src="https://raw.githubusercontent.com/captmomo/practice/master/face/ministers_rated.JPG" width=50%>
 
-
-![wink_1](https://raw.githubusercontent.com/captmomo/practice/master/face/wink_1_rated.JPG | width=200)
+<img src="https://raw.githubusercontent.com/captmomo/practice/master/face/wink_1_rated.JPG" width=50%>
 
 ![wink_2](https://raw.githubusercontent.com/captmomo/practice/master/face/wink_2_rated.JPG |width=200))
 
