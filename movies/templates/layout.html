@@ -3,30 +3,56 @@
 <html lang="en">
 
 <head>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
+    <meta content="initial-scale=1, width=device-width shrink-to-fit=yes" name="viewport" />
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <meta charset="utf-8" />
-    <meta content="initial-scale=1, width=device-width" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Movie budget, box office takings and ratings comparisons</title>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
-    <script type="text/javascript" charset="utf-8">
-       
-    </script>
 </head>
-
 <body>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+                <header class="custom-header mdl-layout__header mdl-layout__header--waterfall">
+                  <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">PyGal Charts</span>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation. We hide it in small screens. -->
+                    <nav class="mdl-navigation mdl-layout--large-screen-only">
+                      <a class="mdl-navigation__link" href="{{url_for('index')}}">Home</a>
+                      <a class="mdl-navigation__link" href="{{url_for('ratings')}}">IMDB Rating vs Box Office Gross</a>
+                      <a class="mdl-navigation__link" href="{{url_for('comparison')}}">RT vs IMDB Ratings</a>
+                      <a class="mdl-navigation__link" href="{{url_for('birth_charts')}}">Singapore Birthrate </a>
+                      <a class="mdl-navigation__link" href="{{url_for('kickstarter')}}">Kickstarter - All</a>
+                      <a class="mdl-navigation__link" href="{{url_for('categories')}}">Kickstarter - Filtered</a>
+                    </nav>
+                  </div>
+                </header>
+                <div class="mdl-layout__drawer">
+                  <span class="mdl-layout-title">Sidebar Menu</span>
+                  <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link" href="{{url_for('index')}}">Home</a>
+                        <a class="mdl-navigation__link" href="{{url_for('ratings')}}">IMDB Ratings vs Box Office Takings</a>
+                        <a class="mdl-navigation__link" href="{{url_for('comparison')}}">RT Score vs IMDB Rating</a>
+                        <a class="mdl-navigation__link" href="{{url_for('birth_charts')}}">Singapore Birthrate charts</a>
+                        <a class="mdl-navigation__link" href="{{url_for('kickstarter')}}">Kickstarter Graphs - All</a>
+                        <a class="mdl-navigation__link" href="{{url_for('categories')}}">Kickstarter Graphs - Filtered</a>
+                  </nav>
+                </div>
+    <main class="mdl-layout__content">
     <div class="container">
-        <div class="page-header">
-            <h1>
-                D3 Chart Example
-                <small>{% block subtext %}{% endblock %}</small>
-            </h1>
-        </div>
-        {% block body %}{% endblock %}
+          
+        {%block body %}{%endblock%}
+      
     </div>
+    </main>    
+
 </body>
 
 </html>

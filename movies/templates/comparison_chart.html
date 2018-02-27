@@ -1,0 +1,6 @@
+{% extends "comparison.html" %} 
+{% block body %}
+<div id='chart'>
+        <embed id='pygal_div' type="image/svg+xml" src= {{ chart|safe }} />
+</div>
+{% endblock %}

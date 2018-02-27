@@ -1,13 +1,13 @@
 {% extends "layout.html" %} 
 {% block body %}
 <div id=selection_form>
-    <form action="{{ url_for('index')}}">
-     <select name='genre'>
-            {% for genre in genres %}
-            {% if genre == selected_genre %}
-                <option selected value="{{ genre }}">{{ genre }}</option> 
+    <form action="{{ url_for('categories')}}">
+     <select name='category'>
+            {% for category in categories %}
+            {% if category == selected_category %}
+                <option selected value="{{ category }}">{{ category }}</option> 
             {% else %} 
-                <option value="{{ genre }}">{{ genre }}</option> 
+                <option value="{{ category }}">{{ category }}</option> 
             {% endif %}
            {% endfor %}
      </select>

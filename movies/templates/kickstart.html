@@ -1,0 +1,15 @@
+{% extends "layout.html" %} {% block body %}
+<?xml version='1.0' encoding='utf-8'?>
+<div>
+    <h3>Categories with less than 5 successful projects are not included</h3>
+    <div id='chart'>
+        <embed id='pygal_div' type="image/svg+xml" src= {{ bars|safe }} />
+    </div>
+</div>
+<div>
+        <h3>Goal vs Pledged (USD)</h3>
+        <div id='chart'>
+            <embed id='pygal_div' type="image/svg+xml" src= {{ scatter|safe }} />
+        </div>
+</div>
+{% endblock %}
