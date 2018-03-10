@@ -61,14 +61,14 @@ def ratings():
     chart = xy_chart.render_data_uri()
     return render_template('ratings.html', chart=chart, genres=genre_list, selected_genre=search_term)
 
-@app.route('/birthcharts.html', methods=['GET'])
+@app.route('/birthcharts', methods=['GET'])
 def birth_charts():
     """
     ROute that maps to birth rate comparison charts
     """
     return render_template('birthcharts.html')
 
-@app.route('/ratings_compare/', methods=['GET'])
+@app.route('/ratings_compare, methods=['GET'])
 def comparison():
     """
     Route that generates pygal chart
