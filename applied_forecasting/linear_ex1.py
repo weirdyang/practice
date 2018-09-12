@@ -8,6 +8,8 @@ from statsmodels.sandbox.regression.predstd import wls_prediction_std
 #read csv into pandas dataframe
 data = pd.read_csv('http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv', index_col=0)
 print(data.describe())
+print(data.head())
+
 # visualize the relationship between the features and the response using scatterplots
 # sharey = yes -> shared y-axis
 # figsize = size of plot
@@ -85,7 +87,7 @@ ax.plot(x_pred.iloc[idx], fittedvalues[idx], '-', color='red', linewidth=2)
 ax.fill_between(x_pred.iloc[idx], predict_ci_low[idx], predict_ci_upp[idx], color='#888888', alpha=0.2)
 # interval for mean responses
 ax.fill_between(x_pred.iloc[idx], predict_mean_ci_low[idx], predict_mean_ci_upp[idx], color='#888888', alpha=0.6)
-# plt.show()
+plt.show()
 
 # Simulation to demonstrate the uncertainty in estimation
 # Here we use simulation to show that when you use different data to estimate the model parameters,
@@ -128,4 +130,4 @@ plt.title("Histogram of the hat beta1")
 plt.xlabel("Value")
 plt.ylabel("Frequency")
 # show plot
-plt.show()
+#plt.show()
