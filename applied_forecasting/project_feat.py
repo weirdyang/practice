@@ -17,13 +17,11 @@ from sklearn.linear_model import LinearRegression
 # https://www.ritchieng.com/pandas-scikit-learn/
 # https://www.kaggle.com/timolee/a-home-for-pandas-and-sklearn-beginner-how-tos
 
-df = pd.read_csv('P1training.csv')
-df['hour'] = pd.to_datetime(df['date']).dt.hour
-feature_cols = [col for col in df.columns if 'Appliances' not in col]
-feature_cols = [col for col in feature_cols if 'date' not in col]
+df = pd.read_csv('P1training_v3.csv', parse_dates=True, index_col=0)
 # dependent variables aka response
 y = df['Appliances']
 # predictors
+feature_cols = [col for col in df.columns if 'Appliances' not in col]
 x = df[feature_cols]
 print(x.head())
 print(feature_cols)
