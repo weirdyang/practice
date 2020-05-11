@@ -51,7 +51,7 @@ def atkinson_dither(in_file):
         for x in range(w):
             oldpixel = pixel[x, y]
             newpixel = round(oldpixel/256, 0)
-            pixel[x, y] = newpixel
+            pixel[x, y] = int(newpixel)
             quant_error = oldpixel - newpixel
             if x < w - 1:
                 pixel[x + 1, y] += quant_error * 1 // 8
@@ -118,7 +118,7 @@ def generate_pixel_image(in_file):
 
 
 def pixelate_image(in_file):
-    image = Image.open(filename)
+    image = Image.open(in_file)
     img_data = list(image.getdata())
     freq_dist = FreqDist(img_data)
     top_1_colour = freq_dist.most_common(1)[0][0]
@@ -133,8 +133,8 @@ def pixelate_image(in_file):
             for r in range(pixelSize):
                 pixel[i+r,j] = backgroundColor
                 pixel[i,j+r] = backgroundColor
-    
-    image.save('pixelated.png')
+    out_file, ext = in_file, ext = os.path.splitext(in_file)
+    image.save(out_file+'pixelated.png')
 
 def colour_dither(in_file):
     img = Image.open(in_file).convert('RGB')
