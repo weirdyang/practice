@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<script
+    src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css"
+    defer></script>
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const codeblocks = document.getElementsByTagName('pre');
+
+        for (let item of codeblocks) {
+            item.classList.add('prettyprint');
+        };
+
+        for (let item of document.getElementsByTagName('h2')){
+            item.classList.add('subtitle','is-3')
+        };
+
+        for (let item of document.getElementsByTagName('h3')){
+            item.classList.add('subtitle', 'is-4')
+        };
+    });
+</script>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-9 has-text">
+                    <h1 class="title">Branches</h1>
+                    <article id="main">
+                        <h2>Main</h2>
+                        
+                        <h3>master</h3>
+                        <p>origin/master is the main branch where the source code of HEAD [i.e. branch's latest commit] always reflects a production-ready state.</p>
+                        <p>Rule of thumb:</p>
+                        <ul>
+                        <li>no direct commits, a pull request will be required for any changes</li>
+                        <li>branches allowed to merge into master: hotfix/*, release/*</li>
+                        </ul>
+                        <hr>
+                        <h3>develop</h3>
+                        <p>origin/develop is the main branch where the source code of HEAD always reflects a state with the latest delivered development changes for the next release.</p>
+                        <p><strong>Example:</strong> Feature A is slated for the next release and Feature B is not. Feature B can not be merged into develop until Feature A has merged into develop and a release branch is created.</p>
+                        <hr>
+                    </article>
+
+<h2>Supporting</h2>
+<h3>release</h3>
+<ul>
+<li><strong>branch from:</strong> develop</li>
+<li><strong>merge into:</strong> master</li>
+<li><strong>naming convention:</strong> release/version [e.g. release/1.0.0]</li>
+</ul>
+<blockquote>
+<p>note: minor bug fixes or comestics alterations are allowed on the branch. Major ones will require a new hotfix branch to be created.</p>
+</blockquote>
+<pre><code class="language-csharp">'create new branch from develop head'
+//current version is 1.0.0
+//if minor change -&gt; 1.1.0
+//if major change -&gt; 2.0.0
+Branch:
+    parent: develop
+    name: release/1.1.0
+Commit:
+    Branch: release/1.1.0
+    message: 'Start v1.1.0-rc Release Candidate builds'
+    tag: 1.1.0-rc1
+
+//rc builds pass testing and QA
+'start pull request to merge into master'
+Pull Request:
+    source branch: feature/my-new-feature
+    target branch: master
+    tag: 1.1.0
+    message: 'Release into production v1.1.0'
+
+Pull request approved =&gt; delete feature/my-new-feature
+</code></pre>
+<hr>
+<h3>feature</h3>
+<ul>
+<li><strong>branch from</strong>: develop</li>
+<li><strong>merge into</strong>: develop</li>
+<li><strong>naming convention</strong>: [e.g. feature/my-new-feature]</li>
+</ul>
+<blockquote>
+<p>note: A feature branch not targetted for the release-to-be-built must wait until after the release branch is branched off before it can be merged into develop.</p>
+</blockquote>
+<pre><code class="language-csharp">'create new branch from develop head'
+Branch:
+    parent: develop
+    name: feature/my-new-feature
+    message: 'Starting development of my-new-feature'
+
+//feature is ready for next release
+'start pull request to merge into develop'
+Pull Request:
+    source branch: feature/my-new-feature
+    target branch: master
+    tag: 1.0.1
+    message: 'Merging new feature for next release'
+
+Pull request approved -&gt; delete feature/my-new-feature
+</code></pre>
+<hr>
+<h3>hotfix</h3>
+<ul>
+<li><strong>branch from:</strong> master</li>
+<li><strong>merge into:</strong> master, develop</li>
+<li><strong>naming convention:</strong> hotfix/kebab-case [e.g. hotfix/breaking-bug]</li>
+</ul>
+<blockquote>
+<p>note: this branch needs to be merged into both master and develop. two pull-requests are required. first, update master and tag the release then merge into develop.</p>
+</blockquote>
+<pre><code class="language-csharp">'start pull request to merge into master'
+//current version is 1.0.0, a hot fix increases it by 0.0.1'
+Pull Request:
+    source branch: hotfix/breaking-bug
+    target branch: master
+    tag: 1.0.1
+    message: 'Fix for production bug'
+
+'pull request is approved and merged into master'
+//now do a pull request to merge into develop
+Pull Request:
+    source branch: hotfix/breaking-bug
+    target branch: develop
+    tag: 1.0.1
+    message: 'Fix for production bug'
+
+Both pull requests approved -&gt; delete hotfix/breaking-bug
+</code></pre>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
