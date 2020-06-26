@@ -26,9 +26,7 @@
             for (let item of document.getElementsByTagName('h3')) {
                 item.classList.add('subtitle', 'is-4')
             };
-
-            createFirst();
-            createSecond();
+            initGraphs();
 
         });
         document.addEventListener("DOMContentLoaded", function() {
@@ -46,6 +44,12 @@
                     let parent = graphToggles[i].closest("section");
                     let child = parent.querySelector(".graph-container");
                     child.classList.toggle("is-hidden");
+                });
+            }
+            let arrowToggers = document.getElementsByClassName("toggle-arrow");
+            for (let i = 0; i < arrowToggers.length; i++) {
+                arrowToggers[i].addEventListener("click", (e) => {
+                    toggleGraphs();
                 });
             }
         });
@@ -179,6 +183,9 @@
                 Pull request approved -&gt; delete feature/my-new-feature
                 </code></pre>
                                                         <div class="level">
+                                                            <span class="level-left">
+                                                                <span class="button is-small toggle-arrow">Toggle arrows</span>
+                                                            </span>
                                                             <span class="is-title is-3 white has-text-centered level-item">
     <h2>Workflow</h2>
   </span>
@@ -188,7 +195,7 @@
 </span>
                                                             </div>
                                                         </div>
-                                                        <figure class="graph-container">
+                                                        <figure id="first-container" class="graph-container">
                                                             <canvas id="first">
 
                     </canvas>
@@ -225,7 +232,7 @@
                                                         <section>
                                                             <div class="level">
                                                                 <span class="level-left">
-                                                                    <span class="button">Toggle arrows</span>
+                                                                    <span class="button is-small toggle-arrow">Toggle arrows</span>
                                                                 </span>
                                                                 <span class="is-title is-3 white has-text-centered level-item">
     <h2>Workflow</h2>
@@ -236,12 +243,46 @@
 </span>
                                                                 </div>
                                                             </div>
-                                                            <figure class="graph-container">
+                                                            <figure class="graph-container" id="second-container">
                                                                 <canvas id="second">
 
                     </canvas>
                                                             </figure>
                                                         </section>
+                                                    </section>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="media">
+                                        <div class="media-content">
+                                            <div class="level">
+                                                <span class="is-title is-3 white has-text-centered level-item">
+                                <h2>Branch Policies</h2>
+                              </span>
+                                                <div class="level-right">
+                                                    <span class="control-toggle has-text-left icon">
+              <i class="fa fa-angle-down"></i>
+              </span>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <ul>
+                                                    <section>
+                                                        <ol>
+                                                            <li>
+                                                                All pull request require at least 1 Approver, the author of the pull request can not approve his own pull request
+                                                            </li>
+                                                            <li>
+                                                                All pull request requires the build validation pipeline to succeed before it can be approved.
+                                                            </li>
+                                                            <li>
+                                                                There must be at least 1 work item linked for the pull request.
+                                                            </li>
+                                                            <li>
+                                                                Releases from the release branch will need to be manually approved before they can be deployed.
+                                                            </li>
+                                                        </ol>
                                                     </section>
                                                 </ul>
                                             </div>

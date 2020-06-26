@@ -103,8 +103,13 @@ const arrowsConfig = {
         offset: 3,
     }
 };
-arrows = false;
-var myTemplate = (arrows) ? new GitGraph.Template(arrowsConfig) : new GitGraph.Template(myTemplateConfig);
+let arrows = false;
+const initGraphs = function() {
+
+    var myTemplate = (arrows) ? new GitGraph.Template(arrowsConfig) : new GitGraph.Template(myTemplateConfig);
+    createFirst(myTemplate);
+    createSecond(myTemplate);
+}
 const createDev = function(graph, parent) {
     return graph.branch({
         parentBranch: parent,
@@ -142,7 +147,7 @@ const addRelease = function(graph, name, parent) {
         column: main["release"]["index"] // which column index it should be displayed in
     });
 };
-const createSecond = function() {
+const createSecond = function(myTemplate) {
     const second = new GitGraph({
         orientation: "horizontal",
         author: "Username",
@@ -166,7 +171,7 @@ const createSecond = function() {
     firstHot.merge(secondDev);
 }
 
-const createFirst = function() {
+const createFirst = function(myTemplate) {
     const first = new GitGraph({
         orientation: "horizontal",
         author: "Username",
@@ -198,3 +203,34 @@ const createFirst = function() {
     firstMast.merge(firstDev);
     firstDev.commit();
 };
+const toggleGraphs = function() {
+
+    arrows = !arrows;
+    toggleFirstGraph();
+    toggleSecondGraph();
+
+    console.log(arrows);
+}
+
+const toggleSecondGraph = function() {
+    var myTemplate = (arrows) ? new GitGraph.Template(arrowsConfig) : new GitGraph.Template(myTemplateConfig);
+    if (document.getElementById("second")) {
+        document.getElementById("second").remove();
+    }
+    let canvas = document.createElement("canvas");
+    canvas.id = "second";
+    document.getElementById("second-container").appendChild(canvas);
+    createSecond(myTemplate);
+
+}
+const toggleFirstGraph = function() {
+    var myTemplate = (arrows) ? new GitGraph.Template(arrowsConfig) : new GitGraph.Template(myTemplateConfig);
+    if (document.getElementById("first")) {
+        document.getElementById("first").remove();
+    }
+    let canvas = document.createElement("canvas");
+    canvas.id = "first";
+    document.getElementById("first-container").appendChild(canvas);
+    createFirst(myTemplate);
+
+}
