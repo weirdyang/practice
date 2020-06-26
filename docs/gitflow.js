@@ -1,3 +1,13 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+    let arrowToggers = document.getElementsByClassName("toggle-arrow");
+    for (let i = 0; i < arrowToggers.length; i++) {
+        arrowToggers[i].addEventListener("click", (e) => {
+            toggleGraphs();
+        });
+        initGraphs();
+    }
+});
+
 const main = {
     master: {
         index: 0,

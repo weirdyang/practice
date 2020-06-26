@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitgraph.js/1.11.4/gitgraph.css" />
     <script src="https://gitgraphjs.com/v1/js/gitgraph.min.js"></script>
-    <script src="gitflow.js"></script>
+
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <script>
@@ -26,7 +26,7 @@
             for (let item of document.getElementsByTagName('h3')) {
                 item.classList.add('subtitle', 'is-4')
             };
-            initGraphs();
+
 
         });
         document.addEventListener("DOMContentLoaded", function() {
@@ -46,14 +46,9 @@
                     child.classList.toggle("is-hidden");
                 });
             }
-            let arrowToggers = document.getElementsByClassName("toggle-arrow");
-            for (let i = 0; i < arrowToggers.length; i++) {
-                arrowToggers[i].addEventListener("click", (e) => {
-                    toggleGraphs();
-                });
-            }
         });
     </script>
+    <script src="gitflow.js"></script>
 </head>
 
 <body>
