@@ -47,6 +47,16 @@
                 });
             }
         });
+        document.addEventListener('load', (event) => {
+    let arrowToggers = document.getElementsByClassName("toggle-arrow");
+    for (let i = 0; i < arrowToggers.length; i++) {
+        arrowToggers[i].addEventListener("click", (e) => {
+            toggleGraphs();
+        });
+        initGraphs();
+    }
+});
+
         </script>
           <script src="gitflow.js"></script>
 </head>
