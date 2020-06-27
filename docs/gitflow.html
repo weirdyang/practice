@@ -12,7 +12,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('load', (event) => {
             const codeblocks = document.getElementsByTagName('pre');
 
             for (let item of codeblocks) {
@@ -29,7 +29,7 @@
 
 
         });
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("load", function() {
             let cardToggles = document.getElementsByClassName("control-toggle");
             for (let i = 0; i < cardToggles.length; i++) {
                 cardToggles[i].addEventListener("click", (e) => {
@@ -47,11 +47,11 @@
                 });
             }
         });
-    </script>
-    <script src="gitflow.js"></script>
+        </script>
 </head>
 
 <body>
+    <script src="gitflow.js"></script>
     <main id="main">
 
         <div class="columns is-centered">
