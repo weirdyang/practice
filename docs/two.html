@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer></script>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitgraph.js/1.11.4/gitgraph.css" />
+    <script src="https://gitgraphjs.com/v1/js/gitgraph.min.js"></script>
+    <script src="gitflow.js" type="text/javascript"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const codeblocks = document.getElementsByTagName('pre');
+
+            for (let item of codeblocks) {
+                item.classList.add('prettyprint');
+            };
+
+            for (let item of document.getElementsByTagName('h2')) {
+                item.classList.add('subtitle', 'is-3')
+            };
+
+            for (let item of document.getElementsByTagName('h3')) {
+                item.classList.add('subtitle', 'is-4')
+            };
+            initGraphs();
+
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            let cardToggles = document.getElementsByClassName("control-toggle");
+            for (let i = 0; i < cardToggles.length; i++) {
+                cardToggles[i].addEventListener("click", (e) => {
+                    let parent = cardToggles[i].closest("article");
+                    let child = parent.querySelector(".content");
+                    child.classList.toggle("is-hidden");
+                });
+            }
+            let graphToggles = document.getElementsByClassName("graph-toggle");
+            for (let i = 0; i < graphToggles.length; i++) {
+                graphToggles[i].addEventListener("click", (e) => {
+                    let parent = graphToggles[i].closest("section");
+                    let child = parent.querySelector(".graph-container");
+                    child.classList.toggle("is-hidden");
+                });
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let arrowToggers = document.getElementsByClassName("toggle-arrow");
+            for (let i = 0; i < arrowToggers.length; i++) {
+                arrowToggers[i].addEventListener("click", (e) => {
+                    toggleGraphs();
+                });
+
+            }
+
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <main id="main">
+
+        <div class="columns is-centered">
+
+            <div class="column is-9">
+                <section>
+                    <div class="level">
+                        <div class="level-item">
+                            <h1 class="title">Branches</h1>
+                        </div>
+
+                    </div>
+                </section>
+                <section>
+
+                    <article class="media">
+
+                        <div class="media-content">
+                            <div class="content">
+                                <ul>
+                                    <article class="media">
+                                        <div class="media-content">
+                                            <div class="level">
+                                                <span class="is-title is-3 white has-text-centered level-item">
+                                <h2>Main</h2>
+                              </span>
+                                                <div class="level-right">
+                                                    <span class="control-toggle has-text-left icon">
+              <i class="fa fa-angle-down"></i>
+              </span>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <ul>
+                                                    <section>
+                                                        <h3>master</h3>
+                                                        <p>origin/master is the main branch where the source code of HEAD [i.e. branch's latest commit] always reflects a production-ready state.</p>
+                                                        <h4>Rule of thumb</h4>
+                                                        <ul>
+                                                            <li>no direct commits, a pull request will be required for any changes</li>
+                                                            <li>branches allowed to merge into master: hotfix/*, release/*</li>
+                                                        </ul>
+                                                        <hr />
+                                                        <h3>develop</h3>
+                                                        <p>origin/develop is the main branch where the source code of HEAD always reflects a state with the latest delivered development changes for the next release.</p>
+                                                        <p><strong>Example:</strong> Feature A is slated for the next release and Feature B is not. Feature B can not be merged into develop until Feature A has merged into develop and a release branch is created.</p>
+                                                    </section>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="media">
+                                        <div class="media-content">
+                                            <div class="level">
+                                                <span class="is-title is-3 white has-text-centered level-item">
+                                <h2>Supporting</h2>
+                              </span>
+                                                <div class="level-right">
+                                                    <span class="control-toggle has-text-left icon">
+                                  <i class="fa fa-angle-down"></i>
+                                  </span>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <ul>
+                                                    <section>
+                                                        <h3>release</h3>
+                                                        <ul>
+                                                            <li><strong>branch from:</strong> develop</li>
+                                                            <li><strong>merge into:</strong> master</li>
+                                                            <li><strong>naming convention:</strong> release/version [e.g. release/1.0.0]</li>
+                                                        </ul>
+                                                        <div class="notification is-info">
+                                                            <p>Note: minor bug fixes or comestics alterations are allowed on the branch. Major ones will require a new hotfix branch to be created.</p>
+                                                        </div>
+                                                        <pre><code class="language-csharp">
+                'create new branch from develop head'
+                //current version is 1.0.0
+                //if minor change -&gt; 1.1.0
+                //if major change -&gt; 2.0.0
+                Branch:
+                    parent: develop
+                    name: release/1.1.0
+                Commit:
+                    Branch: release/1.1.0
+                    message: 'Start v1.1.0-rc Release Candidate builds'
+                    tag: 1.1.0-rc1
+                
+                //rc builds pass testing and QA
+                'start pull request to merge into master'
+                Pull Request:
+                    source branch: feature/my-new-feature
+                    target branch: master
+                    tag: 1.1.0
+                    message: 'Release into production v1.1.0'
+                
+                Pull request approved =&gt; delete feature/my-new-feature
+                </code></pre>
+                                                        <hr>
+                                                        <h3>feature</h3>
+                                                        <ul>
+                                                            <li><strong>branch from</strong>: develop</li>
+                                                            <li><strong>merge into</strong>: develop</li>
+                                                            <li><strong>naming convention</strong>: [e.g. feature/my-new-feature]</li>
+                                                        </ul>
+                                                        <div class="notification is-info">
+                                                            <p>Note: A feature branch not targetted for the release-to-be-built must wait until after the release branch is branched off before it can be merged into develop.</p>
+                                                        </div>
+                                                        <pre><code class="language-csharp">
+                'create new branch from develop head'
+                Branch:
+                    parent: develop
+                    name: feature/my-new-feature
+                    message: 'Starting development of my-new-feature'
+                
+                //feature is ready for next release
+                'start pull request to merge into develop'
+                Pull Request:
+                    source branch: feature/my-new-feature
+                    target branch: master
+                    tag: 1.0.1
+                    message: 'Merging new feature for next release'
+                
+                Pull request approved -&gt; delete feature/my-new-feature
+                </code></pre>
+                                                        <div class="level">
+                                                            <span class="level-left">
+                                                                <span class="button is-small toggle-arrow">Toggle arrows</span>
+                                                            </span>
+                                                            <span class="is-title is-3 white has-text-centered level-item">
+    <h2>Workflow</h2>
+  </span>
+                                                            <div class="level-right">
+                                                                <span class="graph-toggle has-text-left icon">
+<i class="fa fa-angle-down"></i>
+</span>
+                                                            </div>
+                                                        </div>
+                                                        <figure id="first-container" class="graph-container">
+                                                            <canvas id="first">
+
+                    </canvas>
+                                                        </figure>
+                                                        <hr>
+                                                        <h3>hotfix</h3>
+                                                        <ul>
+                                                            <li><strong>branch from:</strong> master</li>
+                                                            <li><strong>merge into:</strong> master, develop</li>
+                                                            <li><strong>naming convention:</strong> hotfix/kebab-case [e.g. hotfix/breaking-bug]</li>
+                                                        </ul>
+                                                        <div class="notification is-info">
+                                                            <p>Note: this branch needs to be merged into both master and develop. two pull-requests are required. first, update master and tag the release then merge into develop.</p>
+                                                        </div>
+                                                        <pre><code class="language-csharp">
+                'start pull request to merge into master'
+                //current version is 1.0.0, a hot fix increases it by 0.0.1'
+                Pull Request:
+                    source branch: hotfix/breaking-bug
+                    target branch: master
+                    tag: 1.0.1
+                    message: 'Fix for production bug'
+                
+                'pull request is approved and merged into master'
+                //now do a pull request to merge into develop
+                Pull Request:
+                    source branch: hotfix/breaking-bug
+                    target branch: develop
+                    tag: 1.0.1
+                    message: 'Fix for production bug'
+                
+                Both pull requests approved -&gt; delete hotfix/breaking-bug
+                </code></pre>
+                                                        <section>
+                                                            <div class="level">
+                                                                <span class="level-left">
+                                                                    <span class="button is-small toggle-arrow">Toggle arrows</span>
+                                                                </span>
+                                                                <span class="is-title is-3 white has-text-centered level-item">
+    <h2>Workflow</h2>
+  </span>
+                                                                <div class="level-right">
+                                                                    <span class="graph-toggle has-text-left icon">
+<i class="fa fa-angle-down"></i>
+</span>
+                                                                </div>
+                                                            </div>
+                                                            <figure class="graph-container" id="second-container">
+                                                                <canvas id="second">
+
+                    </canvas>
+                                                            </figure>
+                                                        </section>
+                                                    </section>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="media">
+                                        <div class="media-content">
+                                            <div class="level">
+                                                <span class="is-title is-3 white has-text-centered level-item">
+                                <h2>Branch Policies</h2>
+                              </span>
+                                                <div class="level-right">
+                                                    <span class="control-toggle has-text-left icon">
+              <i class="fa fa-angle-down"></i>
+              </span>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <ul>
+                                                    <section>
+                                                        <ol>
+                                                            <li>
+                                                                All pull request require at least 1 Approver, the author of the pull request can not approve his own pull request
+                                                            </li>
+                                                            <li>
+                                                                All pull request requires the build validation pipeline to succeed before it can be approved.
+                                                            </li>
+                                                            <li>
+                                                                There must be at least 1 work item linked for the pull request.
+                                                            </li>
+                                                            <li>
+                                                                Releases from the release branch will need to be manually approved before they can be deployed.
+                                                            </li>
+                                                        </ol>
+                                                    </section>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </article>
+                </section>
+            </div>
+        </div>
+
+        <br>
+        <br>
+    </main>
+</body>
+
+</html>
