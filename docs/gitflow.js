@@ -1,4 +1,3 @@
-
 const main = {
     master: {
         index: 0,
